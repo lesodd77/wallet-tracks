@@ -4,10 +4,13 @@
   "description": "wallet tracker in MERN",
   "main": "index.js",
   "scripts": {
-    "start": "node server",
-    "server": "nodemon server",
-    "client": "npm start --prefix wallet-tracker-app",
-    "dev": "concurrently \"npm run server\" \"npm run wallet-tracker-app\""
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "client-install": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "cd app && cd client && npm install --only=dev && npm install && npm run build",
+    "full-install": "npm install && npm install --prefix client"
   },
   "author": "simon agbey",
   "license": "ISC",

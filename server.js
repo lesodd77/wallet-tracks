@@ -21,10 +21,13 @@ if(process.env.NODE_ENV === 'development') {
 
 app.use('/api/v1/transactions', transactions);
 
-if(process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
 
-  app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
+if (process.env.NODE_ENV) {
+  //static folder add
+app.use(express.static('app/client/build'));
+app.get("*", function (req, res) {
+  res.sendFile(path.resolve(__dirname , "app/client/build", "index.html"));
+});
 }
 
 const PORT = process.env.PORT || 5000;
